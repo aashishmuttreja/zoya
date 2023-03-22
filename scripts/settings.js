@@ -198,7 +198,7 @@ function initSdk(name) {
 		  var cbpricerange = "";
 		  var cbloyaltyid = "";
 		  var cbrecommend = "";
-		  console.log(chatMess.messages.length);
+		  //console.log(chatMess.messages.length);
 		  for (let i = 1; i < chatMess.messages.length-1; i++) {
 			
 			if (chatMess.messages[i].messagePayload.text.search("Please enter your Name") >= 0){
@@ -231,10 +231,11 @@ function initSdk(name) {
 			}else if (chatMess.messages[i].messagePayload.text.search("We are all set, I recommend following collection") >= 0){
 				console.log(chatMess.messages[i + 1].messagePayload.text + "-" + i);
 				cbrecommend = chatMess.messages[i + 1].messagePayload.text;
+				break;
 			} else{
 				//console.log("leave");
 			}
-			console.log(i);
+			//console.log(i);
 		  }
 		  alert("Conversation History Captured");
 		  ORA.click({
