@@ -237,24 +237,25 @@ function initSdk(name) {
 			}
 			//console.log(i);
 		  }
-		  alert("Conversation History Captured");
-		  ORA.click({
-				"sendSessionInfo": true,
-				"data": {
-				  "ora.z_action": "chatbot",
-				  "ora.z_cbname": cbname, 
-				  "ora.z_cbemail": cbemail, 
-				  "ora.z_cbmobile": cbmobile,
-				  "ora.z_cbgender": cbgender,
-				  "ora.z_cblookingfor": cblookingfor,
-				  "ora.z_cbforwhom": cbforwhom,
-				  "ora.z_cboccasion": cboccasion,
-				  "ora.z_cbpricerange": cbpricerange,
-				  "ora.z_cbloyaltyid": cbloyaltyid,
-				  "ora.z_cbrecommend": cbrecommend
-				}
-				});
-				
+	    	  if(chatMess.messages.length > 3){
+			  alert("Conversation History Captured");
+			  ORA.click({
+					"sendSessionInfo": true,
+					"data": {
+					  "ora.z_action": "chatbot",
+					  "ora.z_cbname": cbname, 
+					  "ora.z_cbemail": cbemail, 
+					  "ora.z_cbmobile": cbmobile,
+					  "ora.z_cbgender": cbgender,
+					  "ora.z_cblookingfor": cblookingfor,
+					  "ora.z_cbforwhom": cbforwhom,
+					  "ora.z_cboccasion": cboccasion,
+					  "ora.z_cbpricerange": cbpricerange,
+					  "ora.z_cbloyaltyid": cbloyaltyid,
+					  "ora.z_cbrecommend": cbrecommend
+					}
+					});
+		  	}	
 			});
     //Capture chat data
     function actionHandler(action) {
