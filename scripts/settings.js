@@ -185,7 +185,77 @@ function initSdk(name) {
             isFirstConnection = false;
         }
     });
-
+    //Capture chat data
+    Bots.on(WebSDK.EVENT.WIDGET_CLOSED,function(){
+		  let chatMess = Bots.getConversationHistory();
+		  var cbname = "";
+		  var cbemail = "";
+		  var cbmobile = "";
+		  var cbgender = "";
+		  var cblookingfor = "";
+		  var cbforwhom = "";
+		  var cboccasion = "";
+		  var cbpricerange = "";
+		  var cbloyaltyid = "";
+		  var cbrecommend = "";
+			//alert(chatMess.messages.length);
+		  for (let i = 1; i < chatMess.messages.length-1; i++) {
+			
+			if (chatMess.messages[i].messagePayload.text.search("Please enter your Name") >= 0){
+				console.log(chatMess.messages[i + 1].messagePayload.text + "-" + i);
+				cbname = chatMess.messages[i + 1].messagePayload.text;
+			}else if (chatMess.messages[i].messagePayload.text.search("Please enter your Email Address") >= 0){
+				console.log(chatMess.messages[i + 1].messagePayload.text + "-" + i);
+				cbemail = chatMess.messages[i + 1].messagePayload.text;
+			}else if (chatMess.messages[i].messagePayload.text.search("Please enter your phone number") >= 0){
+				console.log(chatMess.messages[i + 1].messagePayload.text + "-" + i);
+				cbmobile = chatMess.messages[i + 1].messagePayload.text;
+			}else if (chatMess.messages[i].messagePayload.text.search("Please select your Gender") >= 0){
+				console.log(chatMess.messages[i + 1].messagePayload.text + "-" + i);
+				cbgender = chatMess.messages[i + 1].messagePayload.text;
+			}else if (chatMess.messages[i].messagePayload.text.search("What are you looking for??") >= 0){
+				console.log(chatMess.messages[i + 1].messagePayload.text + "-" + i);
+				cblookingfor = chatMess.messages[i + 1].messagePayload.text;
+			}else if (chatMess.messages[i].messagePayload.text.search("Awesome! Whom are you looking to buy for?") >= 0){
+				console.log(chatMess.messages[i + 1].messagePayload.text + "-" + i);
+				cbforwhom = chatMess.messages[i + 1].messagePayload.text;
+			}else if (chatMess.messages[i].messagePayload.text.search("Perfect! What is occasion of the gift?") >= 0){
+				console.log(chatMess.messages[i + 1].messagePayload.text + "-" + i);
+				cboccasion = chatMess.messages[i + 1].messagePayload.text;
+			}else if (chatMess.messages[i].messagePayload.text.search("Waho ! Is there a price range?") >= 0){
+				console.log(chatMess.messages[i + 1].messagePayload.text + "-" + i);
+				cbpricerange = chatMess.messages[i + 1].messagePayload.text;
+			}else if (chatMess.messages[i].messagePayload.text.search("Please enter your Loyalty ID") >= 0){
+				console.log(chatMess.messages[i + 1].messagePayload.text + "-" + i);
+				cbloyaltyid = chatMess.messages[i + 1].messagePayload.text;
+			}else if (chatMess.messages[i].messagePayload.text.search("We are all set, I recommend following collection") >= 0){
+				console.log(chatMess.messages[i + 1].messagePayload.text + "-" + i);
+				cbrecommend = chatMess.messages[i + 1].messagePayload.text;
+			} else{
+				//console.log("leave");
+			}
+			//console.log(i);
+		  }
+		  alert("Conversation History Captured");
+		  ORA.click({
+				"sendSessionInfo": true,
+				"data": {
+				  "ora.z_action": "chatbot",
+				  "ora.z_cbname": cbname, 
+				  "ora.z_cbemail": cbemail, 
+				  "ora.z_cbmobile": cbmobile,
+				  "ora.z_cbgender": cbgender,
+				  "ora.z_cblookingfor": cblookingfor,
+				  "ora.z_cbforwhom": cbforwhom,
+				  "ora.z_cboccasion": cboccasion,
+				  "ora.z_cbpricerange": cbpricerange,
+				  "ora.z_cbloyaltyid": cbloyaltyid,
+				  "ora.z_cbrecommend": cbrecommend
+				}
+				});
+				
+			});
+    //Capture chat data
     function actionHandler(action) {
         Bots.sendMessage(action);
     }
