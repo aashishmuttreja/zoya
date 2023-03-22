@@ -198,7 +198,7 @@ function initSdk(name) {
 		  var cbpricerange = "";
 		  var cbloyaltyid = "";
 		  var cbrecommend = "";
-			//alert(chatMess.messages.length);
+		  console.log(chatMess.messages.length);
 		  for (let i = 1; i < chatMess.messages.length-1; i++) {
 			
 			if (chatMess.messages[i].messagePayload.text.search("Please enter your Name") >= 0){
@@ -234,7 +234,7 @@ function initSdk(name) {
 			} else{
 				//console.log("leave");
 			}
-			//console.log(i);
+			console.log(i);
 		  }
 		  alert("Conversation History Captured");
 		  ORA.click({
